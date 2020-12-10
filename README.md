@@ -25,20 +25,8 @@ $ tar --wildcards -xf v5.24.1.tar.gz --strip 1 "*/data" "*/environment.yaml"
 mamba env create --prefix=../snakemake_tutorial_env --file environment.yaml
 ```
 
-## common snakemake command 
-```
--n
-dry run 
 
--s
-choose snakemake file e.g. extraction.smk 
-
--f
-force run 
-
---profile 
-choose a profile (needed for submit jobs on farm)
-```
+> the above command will be sufficient to run jobs on a local computer. only read below if you want to run snakemake on farm 5
 
 ## Snakemake profiles (for submitting jobs)
 #### install snakemake profile 
