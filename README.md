@@ -1,4 +1,5 @@
 # Guide to snakemake on Sanger Farm 5
+adapted from [official tutorial](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 ## installation 
 ### install snakemake 
 
@@ -29,6 +30,7 @@ mamba env create --prefix=../snakemake_tutorial_env --file environment.yaml
 > the above command will be sufficient to run jobs on a local computer. only read below if you want to run snakemake on farm 5
 
 ## Snakemake profiles (for submitting jobs)
+adapted from [Snakemake-Profiles/lsf: Snakemake profile for running jobs on an LSF cluster](https://github.com/Snakemake-Profiles/lsf "Snakemake-Profiles/lsf: Snakemake profile for running jobs on an LSF cluster")
 #### install snakemake profile 
 `mamba install -c conda-forge cookiecutter`
 
