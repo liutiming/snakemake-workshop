@@ -1,4 +1,4 @@
-# Guide to snakemake on Sanger 5
+# Guide to snakemake on Sanger Farm 5
 ## installation 
 ### install snakemake 
 
@@ -10,37 +10,6 @@ conda create --prefix /lustre/scratch119/realdata/mdt2/teams/martin/users/tl11/s
 ```
 #### install mamba
 `conda install -c conda-forge mamba`
-
-#### install snakemake 
-`mamba install snakemake `
-
-#### install snakemake profile 
-`mamba install -c conda-forge cookiecutter`
-
-```
-# create configuration directory that snakemake searches for profiles
-profile_dir="${HOME}/.config/snakemake"
-mkdir -p "$profile_dir"
-# use cookiecutter to create the profile in the config directory
-template="gh:Snakemake-Profiles/lsf"
-cookiecutter --output-dir "$profile_dir" "$template"
-```
-
-#### profile setting (required by the step above)
-```
-LSF_UNIT_FOR_LIMITS=MB
-
-jobscript: "lsf_jobscript.sh"
-use-conda: "True"
-use-singularity: "False"
-printshellcmds: "True"
-restart-times: "0"
-jobs: "500"
-cluster: "lsf_submit.py"
-cluster-status: "lsf_status.py"
-max-jobs-per-second: "10"
-max-status-checks-per-second: "10"
-```
 
 ### set up for workshop  
 #### prepare a directory
@@ -71,3 +40,31 @@ force run
 choose a profile (needed for submit jobs on farm)
 ```
 
+## Snakemake profiles (for submitting jobs)
+#### install snakemake profile 
+`mamba install -c conda-forge cookiecutter`
+
+```
+# create configuration directory that snakemake searches for profiles
+profile_dir="${HOME}/.config/snakemake"
+mkdir -p "$profile_dir"
+# use cookiecutter to create the profile in the config directory
+template="gh:Snakemake-Profiles/lsf"
+cookiecutter --output-dir "$profile_dir" "$template"
+```
+
+#### profile setting (required by the step above)
+```
+LSF_UNIT_FOR_LIMITS=MB
+
+jobscript: "lsf_jobscript.sh"
+use-conda: "True"
+use-singularity: "False"
+printshellcmds: "True"
+restart-times: "0"
+jobs: "500"
+cluster: "lsf_submit.py"
+cluster-status: "lsf_status.py"
+max-jobs-per-second: "10"
+max-status-checks-per-second: "10"
+```
