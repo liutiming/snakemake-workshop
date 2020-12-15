@@ -1,4 +1,5 @@
-# Guide to snakemake on Sanger 5
+# Guide to snakemake on Sanger Farm 5
+adapted from [official tutorial](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)
 ## installation 
 ### install snakemake 
 
@@ -11,9 +12,25 @@ conda create --prefix /lustre/scratch119/realdata/mdt2/teams/martin/users/tl11/s
 #### install mamba
 `conda install -c conda-forge mamba`
 
-#### install snakemake 
-`mamba install snakemake `
+### set up for workshop  
+#### prepare a directory
+```
+$ mkdir snakemake-tutorial
+$ cd snakemake-tutorial
+$ wget https://github.com/snakemake/snakemake-tutorial-data/archive/v5.24.1.tar.gz
+$ tar --wildcards -xf v5.24.1.tar.gz --strip 1 "*/data" "*/environment.yaml"
+```
 
+#### create workshop env
+```
+mamba env create --prefix=../snakemake_tutorial_env --file environment.yaml
+```
+
+
+> the above command will be sufficient to run jobs on a local computer. only read below if you want to run snakemake on farm 5
+
+## Snakemake profiles (for submitting jobs)
+adapted from [Snakemake-Profiles/lsf: Snakemake profile for running jobs on an LSF cluster](https://github.com/Snakemake-Profiles/lsf "Snakemake-Profiles/lsf: Snakemake profile for running jobs on an LSF cluster")
 #### install snakemake profile 
 `mamba install -c conda-forge cookiecutter`
 
@@ -41,33 +58,3 @@ cluster-status: "lsf_status.py"
 max-jobs-per-second: "10"
 max-status-checks-per-second: "10"
 ```
-
-### set up for workshop  
-#### prepare a directory
-```
-$ mkdir snakemake-tutorial
-$ cd snakemake-tutorial
-$ wget https://github.com/snakemake/snakemake-tutorial-data/archive/v5.24.1.tar.gz
-$ tar --wildcards -xf v5.24.1.tar.gz --strip 1 "*/data" "*/environment.yaml"
-```
-
-#### create workshop env
-```
-mamba env create --prefix=../snakemake_tutorial_env --file environment.yaml
-```
-
-## common snakemake command 
-```
--n
-dry run 
-
--s
-choose snakemake file e.g. extraction.smk 
-
--f
-force run 
-
---profile 
-choose a profile (needed for submit jobs on farm)
-```
-

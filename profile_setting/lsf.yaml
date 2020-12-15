@@ -1,0 +1,6 @@
+__default__:
+  - "-G team281"
+  - "-R 'select[mem>30000] rusage[mem=30000]' -M 30000"
+  - "-q normal"
+  - "-J snakemake_trial"
+# do not include input and output file. that will confuse `cookiecutter` and log will be saved nowhere. the log files setting can be found in `~/.config/snakemake/lsf/CookieCutter.py` by default. In my setting it would be saved as a subfolder named `lsf/cluster`
